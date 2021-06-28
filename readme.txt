@@ -1,1 +1,2 @@
-oioiugibu9uyg oiunhpoig 979uygbonpi [pom[iyn09b8[pbngubv6ydxbervuvybonicbt vksdfgb ;m;
+Firebase google-services.json is removed 
+you can create your firebase account and then add your google-services.json file from your account.
