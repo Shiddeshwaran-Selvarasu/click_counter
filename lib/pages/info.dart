@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Info extends StatelessWidget {
 
@@ -66,7 +67,9 @@ class Info extends StatelessWidget {
                                  children:[
                                    _infowidgets(icon: Icons.people_outline_outlined,title: 'Developers:',content: 'Shiddeshwaran.S and Yokesh.G',content2: ' ',),
                                    SizedBox(height: 15,),
-                                   _infowidgets(icon: Icons.info_outline_rounded,title: 'Version:',content: '4.0.7',content2: ' ',),
+                                   _linkwidgets(icon: Icons.build,title: 'Source code:',content: 'Click Here',url: 'https://github.com/Shiddeshwaran-Selvarasu/click_counter',),
+                                   SizedBox(height: 15,),
+                                   _infowidgets(icon: Icons.info_outline_rounded,title: 'Version:',content: '4.0.7 (Stable)',content2: ' ',),
                                    SizedBox(height: 15,),
                                    _infowidgets(icon: Icons.image_outlined,title: 'App icon Source:',content: 'icon-icons.com', content2: ' ',),
                                    SizedBox(height: 15,),
@@ -112,8 +115,48 @@ class _infowidgets extends StatelessWidget{
             crossAxisAlignment: CrossAxisAlignment.start,
             children:[
             Text('$title', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
-              SizedBox(height: 5,),
+            SizedBox(height: 5,),
             Text('${content.toString()}'+'$content2',),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _linkwidgets extends StatelessWidget{
+
+  _linkwidgets({this.icon,this.title,this.content,this.url});
+
+  final icon;
+  final title;
+  final content;
+  final url;
+
+  void _launchURL(String url) async {
+    await launch(url);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Icon(icon, size: 45,),
+          SizedBox(width: 15,),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children:[
+              Text('$title', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
+              SizedBox(height: 5,),
+              InkWell(
+                onTap: () => _launchURL(url),
+                child: Text(content,style: TextStyle(color: Colors.blue,decoration: TextDecoration.underline,),),
+              ),
             ],
           ),
         ],
